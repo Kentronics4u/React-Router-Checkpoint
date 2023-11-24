@@ -48,12 +48,13 @@ function App() {
 
       {/* display movie list based on specified filter or no-filter */}
       {myMovies.length === 0 ? (
-        <div className="text-center p-24 text-3xl shadow-orange-950">
+        <div className="text-center p-24 text-3xl">
           Search did not return any result. Try again
         </div>
       ) : (
         <MovieList myMovies={myMovies} />
       )}
+      {console.log(myMovies)}
     </div>
   );
 }

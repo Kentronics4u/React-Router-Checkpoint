@@ -95,6 +95,8 @@ const AddNewMovie = ({ setMyMovies, clearFilterBtnState, setUnFiltered }) => {
           type="primary"
           onClick={showModal}
           icon={<VideoCameraAddOutlined />}
+          danger
+          shape="round"
         >
           Add Movie
         </Button>

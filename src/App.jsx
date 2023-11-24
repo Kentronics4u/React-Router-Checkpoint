@@ -23,7 +23,7 @@ function App() {
 
   // create new state variable and assign the movies to it
   return (
-    <div className="my-4">
+    <div className="mb-8">
       {/* display navbar */}
 
       <Navbar />

@@ -12,3 +12,22 @@
 .site--hdg {
   font-family: "Lakki Reddy", sans-serif;
 }
+
+body:before {
+  content: "";
+  position: fixed;
+  inset: 0px 30px;
+
+  background: repeating-radial-gradient(#6b2b2b8a 0 0.0001%, #fff 0 0.0002%)
+      100% 100%/6000px 3000px,
+    repeating-conic-gradient(#652c2c 0 0.0001%, #fff 0 0.0002%) 40% 40%/4000px
+      3000px;
+
+  filter: blur(2px) contrast(100) brightness(40);
+  mix-blend-mode: lighten;
+}
+
+body {
+  background: #babcbd;
+  min-height: 100vh;
+}

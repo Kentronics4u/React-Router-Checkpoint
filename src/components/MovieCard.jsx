@@ -7,16 +7,10 @@ const MovieCard = ({ Title, Description, PosterURL, Rating }) => {
   return (
     // Card Component for each movie
     <Card
+      className="w-full sm:w-60"
       hoverable
-      style={{
-        width: 240,
-      }}
       cover={
-        <img
-          alt="example"
-          src={PosterURL}
-          className="h-52 sm:h-auto sm:max-h-72"
-        />
+        <img alt="example" src={PosterURL} className=" sm:h-auto sm:max-h-72" />
       }
       bodyStyle={{ padding: 10, textAlign: "center" }}
     >

@@ -29,6 +29,6 @@ body:before {
 }
 
 body {
-  background: #babcbd;
+  /* background: #babcbd; */
   min-height: 100vh;
 }

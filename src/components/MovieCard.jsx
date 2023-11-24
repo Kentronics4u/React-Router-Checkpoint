@@ -7,7 +7,7 @@ const MovieCard = ({ Title, Description, PosterURL, Rating }) => {
   return (
     // Card Component for each movie
     <Card
-      className="w-full sm:w-60"
+      className="w-[65vw] sm:w-60"
       hoverable
       cover={
         <img alt="example" src={PosterURL} className=" sm:h-auto sm:max-h-72" />

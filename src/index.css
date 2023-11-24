@@ -6,4 +6,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: system-ui, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.site--hdg {
+  font-family: "Lakki Reddy", sans-serif;
 }

@@ -48,7 +48,7 @@ function App() {
 
       {/* display movie list based on specified filter or no-filter */}
       {myMovies.length === 0 ? (
-        <div className="text-center p-24 text-3xl bg-white">
+        <div className="text-center p-24 text-4xl font-extrabold">
           Search did not return any result. Try again
         </div>
       ) : (

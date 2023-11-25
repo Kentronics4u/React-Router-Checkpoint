@@ -111,6 +111,8 @@ const AddNewMovie = ({ setMyMovies, clearFilterBtnState, setUnFiltered }) => {
         onOk={handleOk}
         onCancel={handleCancel}
         className="gap-4"
+        okType="danger"
+        okText="Add Movie"
       >
         <div className="space-y-4">
           <Input

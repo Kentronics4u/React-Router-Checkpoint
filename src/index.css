@@ -20,11 +20,9 @@ body::before {
   z-index: -1;
 
   background: repeating-radial-gradient(#713333 0 0.0001%, #ffffff9c 0 0.0002%)
-      60% 60%/200px 300px,
-    repeating-conic-gradient(#845757 0 0.0001%, #fff 0 0.0002%) 40% 40%/4000px
-      3000px;
+    60% 60%/200px 300px;
 
-  filter: blur(2px) contrast(10) brightness(40);
+  filter: blur(4px) contrast(10) brightness(40);
   mix-blend-mode: lighten;
 }
 

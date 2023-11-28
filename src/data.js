@@ -30,7 +30,7 @@ export const moviesData = [
     Description:
       "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
     PosterURL:
-      "https://images.rawpixel.com/image_450/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAzL3drMzM4MzUxMS1pbWFnZS5qcGc.jpg",
+      "https://c8.alamy.com/comp/2JH2MYR/robbinsposter-the-shawshank-redemption-1994-2JH2MYR.jpg",
     Rating: 3,
   },
 

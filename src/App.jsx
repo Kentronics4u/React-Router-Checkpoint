@@ -1,60 +1,64 @@
-import { Navbar } from "./components/Navbar";
-import MovieList from "./components/MovieList";
-import Filter from "./components/Filter";
-import AddNewMovie from "./components/AddNewMovie";
 import { moviesData } from "./data";
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import MainLayout from "./layouts/MainLayout";
+import MovieList from "./pages/MovieList/MovieList";
+import MovieDetail from "./pages/MovieList/MovieDetail";
+import Filter from "./components/Filter";
 
 function App() {
   // state to manage movies to be displayed
   const [myMovies, setMyMovies] = useState(moviesData);
 
-  // state to manage state of filter button.
+  // state for filter button display
   const [clearFilterBtnState, setClearFilterBtnState] = useState(false);
 
-  // state to manage display of movies when being filtered
+  // movies to be displayed when no filter is applied
   const [unFiltered, setUnFiltered] = useState(myMovies);
 
-  // This function is triggered when the clear filter button is clicked. it sets myMovies to unfiltered and sets filterBtnState to false
-  const clearFilterFunc = () => {
-    setMyMovies(unFiltered);
-    setClearFilterBtnState(false);
-  };
-
-  // create new state variable and assign the movies to it
   return (
     <div className="mb-8">
-      {/* display navbar */}
+      <Routes>
+        {/* Main layout route to nest other pages/components */}
+        <Route path="/" element={<MainLayout />}>
+          <Route
+            element={
+              <Filter
+                setMyMovies={setMyMovies} // Component needs to able to setMyMovies
+                clearFilterBtnState={clearFilterBtnState}
+                setClearFilterBtnState={setClearFilterBtnState}
+                unFiltered={unFiltered}
+                setUnFiltered={setUnFiltered}
+              />
+            }
+          >
+            <Route
+              index
+              element={
+                myMovies.length === 0 ? (
+                  <div className="text-center p-24 text-4xl font-extrabold">
+                    Search did not return any result. Try again
+                  </div>
+                ) : (
+                  <MovieList myMovies={myMovies} />
+                )
+              }
+            />
+          </Route>
 
-      <Navbar />
-
-      <div className="shadow-md shadow-orange-950 sticky top-[67px] flex flex-col-reverse sm:flex-row justify-around gap-2 my-0.5 place-items-center bg-white opacity-100 z-10 py-2 rounded-br-3xl">
-        {/* render & pass props to filter component */}
-        <Filter
-          setMyMovies={setMyMovies} // Component needs to able to setMyMovies
-          myMovies={myMovies}
-          clearFilterBtnState={clearFilterBtnState}
-          setClearFilterBtnState={setClearFilterBtnState}
-          unFiltered={unFiltered}
-        />
-
-        {/* render & pass props to AddMovie component - contains the modal and button to add new movie*/}
-        <AddNewMovie
-          setMyMovies={setMyMovies}
-          clearFilterBtnState={clearFilterBtnState}
-          setUnFiltered={setUnFiltered}
-        />
-      </div>
-
-      {/* display movie list based on specified filter or no-filter */}
-      {myMovies.length === 0 ? (
-        <div className="text-center p-24 text-4xl font-extrabold">
-          Search did not return any result. Try again
-        </div>
-      ) : (
-        <MovieList myMovies={myMovies} />
-      )}
-      {console.log(myMovies)}
+          <Route
+            path=":movieId"
+            element={
+              <MovieDetail
+                setMyMovies={setMyMovies}
+                unFiltered={unFiltered}
+                setClearFilterBtnState={setClearFilterBtnState}
+                myMovies={myMovies}
+              />
+            }
+          />
+        </Route>
+      </Routes>
     </div>
   );
 }

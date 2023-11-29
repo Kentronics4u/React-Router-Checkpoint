@@ -10,6 +10,7 @@ const AddNewMovie = ({ setMyMovies, clearFilterBtnState, setUnFiltered }) => {
     Title: "",
     Description: "",
     PosterURL: "",
+    TrailerURL: "",
     Rating: 0,
   };
 
@@ -35,9 +36,22 @@ const AddNewMovie = ({ setMyMovies, clearFilterBtnState, setUnFiltered }) => {
     setIsModalOpen(true);
   };
 
+  // a REGEX function to check if the supplied movie TRAILER URL is a valid video from youtube
+  function extractVideoID(url) {
+    const regExp =
+      /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    if (match && match[7].length == 11) {
+      return match[7];
+    }
+  }
+
   // function to handle OK button click
   const handleOk = () => {
-    if (!validator.isURL(movieInfo.PosterURL)) {
+    if (
+      !validator.isURL(movieInfo.PosterURL) ||
+      !movieInfo.PosterURL.match(/(jpeg|jpg|gif|png|webp|jpeg)/)
+    ) {
       // validate poster url
       messageApi.open({
         type: "error",
@@ -45,6 +59,22 @@ const AddNewMovie = ({ setMyMovies, clearFilterBtnState, setUnFiltered }) => {
       });
       return;
     }
+    if (
+      !validator.isURL(movieInfo.TrailerURL) ||
+      !extractVideoID(movieInfo.TrailerURL)
+    ) {
+      // validate trailer url
+      messageApi.open({
+        type: "error",
+        content: "Please provide a valid Youtube Trailer Link",
+      });
+      return;
+    } else {
+      movieInfo.TrailerURL = `https://www.youtube.com/embed/${extractVideoID(
+        movieInfo.TrailerURL
+      )}`;
+    }
+
     if (validator.isEmpty(movieInfo.Title)) {
       // validate movie title
       messageApi.open({
@@ -126,6 +156,12 @@ const AddNewMovie = ({ setMyMovies, clearFilterBtnState, setUnFiltered }) => {
             id="PosterURL"
             onChange={handleInput}
             value={movieInfo.PosterURL}
+          />
+          <Input
+            placeholder="Trailer URL (only embed link from Youtube)"
+            id="TrailerURL"
+            onChange={handleInput}
+            value={movieInfo.TrailerURL}
           />
           <Input.TextArea
             rows={4}

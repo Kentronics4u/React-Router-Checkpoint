@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Navbar = () => {
+const Navbar = () => {
   //Navbar component
   return (
     <nav className="shadow-orange-950  shadow-lg pl-16 flex items-center space-x-2 justify-center sticky top-0 z-10 bg-white bg-opacity-100">
@@ -14,3 +14,5 @@ export const Navbar = () => {
     </nav>
   );
 };
+
+export default Navbar;
